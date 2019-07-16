@@ -28,15 +28,15 @@ struct sockaddr
 
 */
 
-#define BUF_SIZE = 1024
+#define BUF_SIZE 1024
 void error_handling(char* message)
 {
     fputs(message, stderr);
-    fputc('\n', stderr)
+    fputc('\n', stderr);
     exit(-1);
 }
 
-int int main(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
     int serv_sock, clnt_sock;
     char message[BUF_SIZE];
@@ -62,11 +62,11 @@ int int main(int argc, char const *argv[])
     serv_adr.sin_port = htos(atoi(argv[1]));
 
     //绑定套接字
-    if (bind(serv_sock, (strct sockaddr*) &serv_adr, sizeof(serv_adr)) == -1)
+    if (bind(serv_sock, (struct sockaddr*) &serv_adr, sizeof(serv_adr)) == -1)
         error_handling("bind error!");
 
     //监听端口
-    if(listen(serv_adr, 5) == -1)
+    if(listen(serv_sock, 5) == -1)
         error_handling("listen() error!");
 
     clnt_adr_sz = sizeof(clnt_adr);
